@@ -19,14 +19,22 @@ config({
 }); //process.env
 
 const localOriginPattern = /^http:\/\/(localhost|127\.0\.0\.1):\d+$/;
-const rawOrigins = process.env.CLIENT_URLS ?? process.env.CLIENT_URL ?? "";
+const rawOrigins = process.env.CLIENT_URLS ?? process.env.CLIENT_URL ?? (process.env.NODE_ENV === "production" ? "https://*.vercel.app" : "");
 const configuredOrigins = rawOrigins
   .trim()
   .replace(/^['"]|['"]$/g, "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
-const allowedOrigins = new Set(configuredOrigins);
+const exactOrigins = new Set(configuredOrigins.filter((origin) => !origin.includes("*")));
+const wildcardOriginPatterns = configuredOrigins
+  .filter((origin) => origin.includes("*"))
+  .map((pattern) =>
+    new RegExp(
+      `^${pattern.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\\\*/g, "[^/]+")}$`
+    )
+  );
+console.log("Configured CORS origins:", configuredOrigins.length ? configuredOrigins : "(none)");
 const dbUrl = process.env.DB_URL?.trim().replace(/^['"]|['"]$/g, "");
 const port = Number(process.env.PORT) || 4000;
 
@@ -35,7 +43,13 @@ const app = exp();
 //cors 
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || localOriginPattern.test(origin) || allowedOrigins.has(origin)) {
+    const originAllowed =
+      !origin ||
+      localOriginPattern.test(origin) ||
+      exactOrigins.has(origin) ||
+      wildcardOriginPatterns.some((pattern) => pattern.test(origin));
+
+    if (originAllowed) {
       callback(null, true);
       return;
     }
