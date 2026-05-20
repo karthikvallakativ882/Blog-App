@@ -37,7 +37,9 @@ const wildcardOriginPatterns = configuredOrigins
     )
   );
 console.log("Configured CORS origins:", configuredOrigins.length ? configuredOrigins : "(none)");
-const dbUrl = process.env.DB_URL?.trim().replace(/^['"]|['"]$/g, "");
+const dbUrl =
+  process.env.DB_URL?.trim().replace(/^['"]|['"]$/g, "") ||
+  process.env.MONGO_URI?.trim().replace(/^['"]|['"]$/g, "");
 const port = Number(process.env.PORT) || 4000;
 
 //Create express application
@@ -73,29 +75,35 @@ app.use("/Common-api",commonRouter);
 
 //connect to db
 const connectDB = async () => {
+  if (!dbUrl) {
+    throw new Error("Missing DB_URL or MONGO_URI environment variable");
+  }
+
+  if (!/^mongodb(\+srv)?:\/\//.test(dbUrl)) {
+    throw new Error("Invalid DB URL. It must start with mongodb:// or mongodb+srv://");
+  }
+
+  await connect(dbUrl, {
+    serverSelectionTimeoutMS: 10000,
+    socketTimeoutMS: 45000,
+  });
+  console.log("DB connection success");
+};
+
+const startServer = async () => {
   try {
-    if (!dbUrl) {
-      console.log("Missing DB_URL environment variable");
-      return;
-    }
+    await connectDB();
 
-    if (!/^mongodb(\+srv)?:\/\//.test(dbUrl)) {
-      console.log("Invalid DB_URL. It must start with mongodb:// or mongodb+srv://");
-      return;
-    }
-
-    await connect(dbUrl);
-    console.log("DB connection success");
+    app.listen(port, () => {
+      console.log(`server started on port ${port}`);
+    });
   } catch (err) {
-    console.log("Err in DB connection:", err);
+    console.error("Failed to start server:", err);
+    process.exit(1);
   }
 };
 
-//start http server immediately
-app.listen(port, () => {
-  console.log(`server started on port ${port}`);
-  connectDB();
-});
+startServer();
 
 
 
