@@ -19,7 +19,9 @@ config({
 }); //process.env
 
 const localOriginPattern = /^http:\/\/(localhost|127\.0\.0\.1):\d+$/;
-const rawOrigins = process.env.CLIENT_URLS ?? process.env.CLIENT_URL ?? (process.env.NODE_ENV === "production" ? "https://*.vercel.app" : "");
+const envOrigins = process.env.CLIENT_URLS ?? process.env.CLIENT_URL ?? "";
+const productionFallbackOrigins = process.env.NODE_ENV === "production" ? "https://*.vercel.app" : "";
+const rawOrigins = [envOrigins, productionFallbackOrigins].filter(Boolean).join(",");
 const configuredOrigins = rawOrigins
   .trim()
   .replace(/^['"]|['"]$/g, "")
