@@ -19,7 +19,10 @@ config({
 }); //process.env
 
 const localOriginPattern = /^http:\/\/(localhost|127\.0\.0\.1):\d+$/;
-const configuredOrigins = (process.env.CLIENT_URLS ?? "")
+const rawOrigins = process.env.CLIENT_URLS ?? process.env.CLIENT_URL ?? "";
+const configuredOrigins = rawOrigins
+  .trim()
+  .replace(/^['"]|['"]$/g, "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
