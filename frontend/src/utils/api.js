@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const envBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim()
+const fallbackProdBaseUrl = import.meta.env.PROD ? 'https://blog-app-cod1.onrender.com' : ''
 
 function normalizeBaseUrl(value) {
   if (!value) {
@@ -10,7 +11,7 @@ function normalizeBaseUrl(value) {
   return value.replace(/\/+$/, '')
 }
 
-export const API_BASE_URL = normalizeBaseUrl(envBaseUrl)
+export const API_BASE_URL = normalizeBaseUrl(envBaseUrl || fallbackProdBaseUrl)
 
 export const createApiUrl = (path = '') => {
   const normalizedPath = path.startsWith('/') ? path : `/${path}`
