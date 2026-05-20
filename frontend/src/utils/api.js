@@ -5,7 +5,7 @@ const fallbackProdBaseUrl = import.meta.env.PROD ? 'https://blog-app-cod1.onrend
 
 function normalizeBaseUrl(value) {
   if (!value) {
-    return import.meta.env.DEV ? 'http://localhost:4000' : ''
+    return import.meta.env.DEV ? 'http://localhost:5000' : ''
   }
 
   return value.replace(/\/+$/, '')
