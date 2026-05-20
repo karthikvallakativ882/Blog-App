@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background-color: #dbe4ee;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --page-top: #d8e4f0;
+  --page-bottom: #f6f8fb;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: rgba(255, 255, 255, 0.94);
+  --surface-border: rgba(148, 163, 184, 0.34);
+  --shadow-soft: 0 18px 48px rgba(15, 23, 42, 0.08);
+  --shadow-strong: 0 26px 80px rgba(15, 23, 42, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: #0f172a;
+  caret-color: transparent;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 24%),
+    linear-gradient(180deg, var(--page-top) 0%, #e7edf4 46%, var(--page-bottom) 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@layer base {
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  input,
+  textarea,
+  select {
+    caret-color: auto;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply min-h-screen px-4 py-6 sm:px-6 lg:px-8 lg:py-10;
+  }
+
+  .layout-shell {
+    @apply mx-auto max-w-6xl;
+  }
+
+  .nav-shell {
+    @apply rounded-[28px] border p-3 backdrop-blur-xl;
+    background-color: var(--surface);
+    border-color: var(--surface-border);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .nav-button {
+    @apply rounded-2xl px-4 py-2 text-sm font-semibold text-slate-700 transition duration-200 hover:bg-white hover:text-slate-900;
+    caret-color: transparent;
+    user-select: none;
+  }
+
+  .nav-button-active {
+    @apply bg-sky-500 text-white hover:bg-sky-500;
+    box-shadow: 0 10px 24px rgba(14, 165, 233, 0.28);
+  }
+
+  .content-stage {
+    @apply mt-6 flex min-h-[calc(100vh-12rem)] items-start justify-center;
+  }
+
+  .welcome-card {
+    @apply w-full max-w-3xl rounded-[32px] border px-6 py-12 text-center backdrop-blur-xl sm:px-10;
+    background-color: var(--surface-strong);
+    border-color: var(--surface-border);
+    box-shadow: var(--shadow-strong);
+    animation: card-rise 260ms ease-out both;
+  }
+
+  .form-card {
+    @apply w-full max-w-3xl rounded-[32px] border p-6 backdrop-blur-xl sm:p-8;
+    background-color: var(--surface-strong);
+    border-color: var(--surface-border);
+    box-shadow: var(--shadow-strong);
+    animation: card-rise 260ms ease-out both;
+  }
+
+  .compact-form-card {
+    @apply w-full max-w-xl rounded-[32px] border p-6 backdrop-blur-xl sm:p-8;
+    background-color: var(--surface-strong);
+    border-color: var(--surface-border);
+    box-shadow: var(--shadow-strong);
+    animation: card-rise 260ms ease-out both;
+  }
+
+  .placeholder-card {
+    @apply w-full max-w-2xl rounded-[32px] border p-8 text-center backdrop-blur-xl;
+    background-color: var(--surface-strong);
+    border-color: var(--surface-border);
+    box-shadow: var(--shadow-strong);
+    animation: card-rise 260ms ease-out both;
+  }
+
+  .article-board {
+    @apply w-full rounded-[32px] border p-6 backdrop-blur-xl sm:p-8;
+    background-color: var(--surface-strong);
+    border-color: var(--surface-border);
+    box-shadow: var(--shadow-strong);
+    animation: card-rise 260ms ease-out both;
+  }
+
+  .dashboard-hero {
+    @apply relative mx-auto flex w-full max-w-4xl flex-col items-center overflow-hidden rounded-[36px] border px-6 py-14 text-center sm:px-10;
+    background:
+      radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%);
+    border-color: rgba(125, 211, 252, 0.32);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.1);
+    animation: card-rise 260ms ease-out both;
+  }
+
+  .dashboard-hero::before {
+    content: "";
+    position: absolute;
+    inset: auto auto -40px -20px;
+    width: 180px;
+    height: 180px;
+    border-radius: 9999px;
+    background: rgba(186, 230, 253, 0.38);
+    filter: blur(24px);
+    pointer-events: none;
+  }
+
+  .dashboard-hero::after {
+    content: "";
+    position: absolute;
+    inset: 18px 18px auto auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 9999px;
+    background: rgba(14, 165, 233, 0.12);
+    filter: blur(12px);
+    pointer-events: none;
+  }
+
+  .dashboard-hero-kicker {
+    @apply text-sm font-semibold uppercase text-sky-600;
+    letter-spacing: 0.34em;
+  }
+
+  .dashboard-hero-title {
+    @apply mt-4 max-w-3xl text-4xl font-semibold leading-tight text-slate-800 sm:text-5xl;
+  }
+
+  .dashboard-hero-name {
+    @apply mt-2 block text-sky-500;
+  }
+
+  .dashboard-hero-copy {
+    @apply mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg;
+  }
+
+  .dashboard-hero-badge {
+    @apply mt-7 inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold uppercase text-sky-700;
+    letter-spacing: 0.16em;
+    background: rgba(224, 242, 254, 0.95);
+    border: 1px solid rgba(125, 211, 252, 0.5);
+    box-shadow: 0 10px 24px rgba(14, 165, 233, 0.12);
+  }
+
+  .article-preview-card {
+    @apply flex h-full w-full flex-col rounded-[28px] border border-slate-200 bg-white/90 p-5 transition duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-white;
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.05);
+  }
+
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center px-4 py-6;
+    background: rgba(15, 23, 42, 0.52);
+    backdrop-filter: blur(10px);
+  }
+
+  .modal-card {
+    @apply max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[32px] border p-6 sm:p-8;
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(148, 163, 184, 0.28);
+    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.22);
+  }
+
+  .form-title {
+    @apply text-center text-3xl font-semibold text-slate-800;
+  }
+
+  .field-label {
+    @apply mb-2 block text-sm font-semibold text-slate-700;
+    letter-spacing: 0.02em;
+  }
+
+  .text-input {
+    @apply w-full rounded-xl border px-4 py-3 text-sm text-slate-800 outline-none transition duration-200 focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-100;
+    border-color: rgba(148, 163, 184, 0.34);
+    background-color: rgba(241, 245, 249, 0.78);
+  }
+
+  .file-input {
+    @apply w-full rounded-xl border px-3 py-2 text-sm text-slate-700 file:mr-4 file:rounded-lg file:border-0 file:bg-sky-500 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-sky-600;
+    border-color: rgba(148, 163, 184, 0.34);
+    background-color: rgba(241, 245, 249, 0.78);
+  }
+
+  .radio-chip {
+    @apply inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium text-slate-700 transition duration-200;
+    border-color: rgba(148, 163, 184, 0.34);
+    background-color: rgba(241, 245, 249, 0.82);
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center rounded-xl bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition duration-200 hover:bg-sky-600 focus:outline-none focus:ring-4 focus:ring-sky-200;
+    box-shadow: 0 12px 28px rgba(14, 165, 233, 0.24);
+  }
+
+  .error-text {
+    @apply mt-2 text-sm font-medium text-red-600;
+  }
+
+  .muted-text {
+    @apply mt-2 text-sm text-slate-500;
+  }
+}
+
+.text-input::placeholder {
+  color: #64748b;
+}
+
+.text-input:disabled,
+.file-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.primary-button:disabled {
+  background-color: #94a3b8;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.radio-chip:focus-within {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(186, 230, 253, 0.8);
+}
+
+@media (max-width: 640px) {
+  .content-stage {
+    @apply items-start;
+  }
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

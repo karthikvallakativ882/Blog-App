@@ -1,0 +1,79 @@
+# Blog App
+
+## Project Overview
+Blog App is a full-stack web application that allows users to create, read, update, and delete blog posts with secure authentication and responsive user interface.
+
+## Problem Statement
+Traditional content sharing platforms often lack simplified personal publishing workflows and secure user-specific blog management. This application provides a secure and scalable blogging platform.
+
+## Features
+- User Registration
+- Login Authentication
+- JWT Authorization
+- Create Blog Posts
+- Read Blogs
+- Edit Blogs
+- Delete Blogs
+- Protected Routes
+- Responsive UI
+- REST API Integration
+
+## System Architecture
+Frontend → API Layer → Backend → MongoDB Database
+
+## Tech Stack
+
+### Frontend
+- React.js
+- Vite
+- Axios
+- React Router
+- CSS
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcrypt
+- dotenv
+- cors
+
+## Frameworks and Libraries Used
+Detailed table explaining purpose of each framework.
+
+## Project Structure
+blog-app/
+├── frontend/
+├── backend/
+
+## Installation
+Complete frontend + backend setup.
+
+## Environment Variables
+Frontend and backend env configuration.
+
+## Running Locally
+Frontend and backend startup steps.
+
+## Deployment
+- Frontend → Vercel
+- Backend → Render
+- Database → MongoDB Atlas
+
+## API Workflow
+Frontend request → Backend API → Database → Response
+
+## Screenshots
+(Optional)
+
+## Future Enhancements
+- Comments
+- Likes
+- Search
+- Categories
+- Admin Dashboard
+
+## Author
+Arjun Varikuppala

@@ -1,0 +1,56 @@
+# Blog App Frontend
+
+## Overview
+Detailed explanation of frontend purpose and workflow.
+
+## Features
+- User Authentication
+- Blog Viewing
+- Create Blog
+- Edit Blog
+- Delete Blog
+- Responsive UI
+- Protected Routes
+- API Integration
+
+## Tech Stack
+- React.js
+- Vite
+- JavaScript
+- HTML5
+- CSS3
+- Axios
+- React Router DOM
+- Context API / State Management (if used)
+
+## Frameworks and Libraries Used
+| Tool | Purpose |
+|------|---------|
+| React | UI development |
+| Vite | Fast frontend bundler |
+| Axios | API requests |
+| React Router | Client-side routing |
+| CSS | Styling |
+
+## Folder Structure
+Complete explanation.
+
+## Installation
+npm install
+
+## Environment Variables
+VITE_API_URL 
+
+## Running Locally
+npm run dev
+
+## Build
+npm run build
+
+## Deployment
+Vercel deployment steps
+
+## API Communication
+How frontend talks to backend.
+
+## Future Improvements

@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/user-api/:path*",
+      "destination": "https://blog-app-6k5a.onrender.com/user-api/:path*"
+    },
+    {
+      "source": "/author-api/:path*",
+      "destination": "https://blog-app-6k5a.onrender.com/author-api/:path*"
+    },
+    {
+      "source": "/Common-api/:path*",
+      "destination": "https://blog-app-6k5a.onrender.com/Common-api/:path*"
+    },
+    {
+      "source": "/admin-api/:path*",
+      "destination": "https://blog-app-6k5a.onrender.com/admin-api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+###
+### User Register
+POST http://localhost:4000/user-api/users
+Content-Type: application/json
+
+{
+  "firstName": "abhiram",
+  "lastName": "bheemari",
+  "email": "e63@gmail.com",
+  "password": "Anurag@63",
+  "profileImageUrl": "https://example.com/avatars/user.png"
+}
+
+### User Login
+POST http://localhost:4000/Common-api/login
+Content-Type: application/json
+
+{
+  "email": "e07@gmail.com",
+  "password": "Anurag@07"
+}
+
+### Author Register
+POST http://localhost:4000/author-api/users
+Content-Type: application/json
+
+{
+  "firstName": "Vikas",
+  "lastName": "Author",
+  "email": "rajesh.author@example.com",
+  "password": "rajesh",
+  "profileImageUrl": "https://example.com/avatars/author.png"
+}
+
+
+### Author Register
+POST http://localhost:4000/author-api/users
+Content-Type: application/json
+
+{
+  "firstName": "test",
+  "lastName": "Author",
+  "email": "test.author@example.com",
+  "password": "testauthor",
+  "profileImageUrl": "https://example.com/avatars/author.png"
+}
+
+### Author Login
+POST http://localhost:4000/common-api/login
+Content-Type: application/json
+
+{
+  "email": "vikas.author@example.com",
+  "password": "Author@12345"
+}
+
+
+
+### Create article (AUTHOR)
+POST http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+  "author":"6989f45457ff60cc215e6045",
+  "title":"test2 article",
+  "category":"programming",
+  "content":"content of test2 article"
+}
+
+
+
+###Read articles of a author
+GET http://localhost:4000/author-api/articles/6989f45457ff60cc215e6045
+
+
+
+### Update article (AUTHOR)
+PUT http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+  "author":"6989f45457ff60cc215e6045",
+  "articleId":"698a005bddbe2ad70f166499",
+  "title":"test2 article updated",
+  "category":"programming",
+  "content":"content of test2 article updated"
+}
+
+
+
+### Logout
+GET http://localhost:4000/Common-api/logout
+
+
+###
+GET http://localhost:4000/test
+
+
+###
+PUT http://localhost:4000/admin-api/admin/block/698acad5ad07edd8a01dc66e
+
+### unblock 
+PUT http://localhost:4000/admin-api/admin/unblock/698acad5ad07edd8a01dc66e
+
+
+### 
+PUT http://localhost:4000/common-api/change-password
+Content-Type: application/json
+
+{
+  "email":"e07@gmail.com",
+  "currentPassword":"Anurag@123456",
+  "newPassword":"Anurag@12"
+}
+
