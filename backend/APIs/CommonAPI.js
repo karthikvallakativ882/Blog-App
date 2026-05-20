@@ -6,10 +6,15 @@ import { verifyToken } from "../middlewares/verifyToken.js";
 
 export const commonRouter = exp.Router();
 
+const isLocalhost =
+  process.env.NODE_ENV === "development" ||
+  process.env.CLIENT_URLS?.includes("localhost") ||
+  process.env.CLIENT_URL?.includes("localhost");
+
 const cookieOptions = {
   httpOnly: true,
-  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-  secure: process.env.NODE_ENV === "production",
+  sameSite: isLocalhost ? "lax" : "none",
+  secure: !isLocalhost,
 };
 
 // login
